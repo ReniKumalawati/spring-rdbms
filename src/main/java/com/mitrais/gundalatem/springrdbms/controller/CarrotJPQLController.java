@@ -20,7 +20,7 @@ public class CarrotJPQLController {
     @GetMapping
     public List<Carrot> get(@RequestParam(required = false) String type) {
         if (type != null) {
-            List<Carrot>  cr = carrotServiceUsingDb.findAllByType(type);
+            List<Carrot>  cr = carrotServiceUsingDb.findAllByTypeJPQL(type);
             return cr;
         }
         List<Carrot>  cr = carrotServiceUsingDb.fetchCarrotJPQL();

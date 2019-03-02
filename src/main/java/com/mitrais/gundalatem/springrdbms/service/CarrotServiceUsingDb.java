@@ -12,6 +12,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CarrotServiceUsingDb implements CarrotService {
@@ -45,7 +46,13 @@ public class CarrotServiceUsingDb implements CarrotService {
     @Override
     public List<Carrot> findAllByType(String type) {
         System.out.println(type);
-        return carrotRepository.findAllByType("%" + type + "%");
+        return carrotRepository.findAll().stream().filter((e) -> e.getType().equals(type)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Carrot> findAllByTypeJPQL(String type) {
+        System.out.println(type);
+        return carrotRepository.findAllByTypeJPQL("%" + type + "%");
     }
 
 //    @Override

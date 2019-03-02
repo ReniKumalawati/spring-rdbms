@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface CarrotRepository extends JpaRepository<Carrot, Integer> {
     @Query("select c from Carrot c where c.type like :type")
-    List<Carrot> findAllByType(String type);
+    List<Carrot> findAllByTypeJPQL(String type);
 
     @Query("select c from Carrot c")
     List<Carrot> fetchCarrotJPQL();
