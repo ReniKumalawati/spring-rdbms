@@ -1,14 +1,61 @@
 package com.mitrais.gundalatem.springrdbms.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.mitrais.gundalatem.springrdbms.model.Carrot;
+import com.mitrais.gundalatem.springrdbms.service.CarrotRepositoryImpl;
+//import com.mitrais.gundalatem.springrdbms.service.CarrotServiceUsingDb;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/carrots")
 public class CarrotController {
+
+  /*  private CarrotServiceUsingDb carrotServiceUsingDb;
+
+    public CarrotController(CarrotServiceUsingDb carrotServiceUsingDb) {
+        this.carrotServiceUsingDb = carrotServiceUsingDb;
+    }
+
     @GetMapping
-    public void get() {
-        System.out.println("aaaa");
-    } 
+    public List<Carrot> get() {
+        List<Carrot>  cr = carrotServiceUsingDb.fetch();
+        return cr;
+    }
+
+    @PostMapping
+    public  void createCarrot (@RequestBody  Carrot carrot) {
+        carrotServiceUsingDb.create(carrot);
+    }*/
+
+  private CarrotRepositoryImpl carrotRepositoryImpl;
+
+  public CarrotController(CarrotRepositoryImpl carrotRepositoryImpl){
+      this.carrotRepositoryImpl = carrotRepositoryImpl;
+  }
+
+  @GetMapping
+    public List<Carrot> get(){
+      List<Carrot> cr = carrotRepositoryImpl.carrotByType();
+      return cr;
+  }
+
+    @GetMapping ("{type}")
+    public List<Carrot> findByType(@PathVariable String type){
+        List<Carrot> cr = carrotRepositoryImpl.carrotByType(type);
+        return cr;
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteCarrot(@PathVariable Integer id){
+        carrotRepositoryImpl.deleteCarrot(id);
+    }
+
+    @PutMapping("{id}")
+    public void updateCarrot(@PathVariable Integer id, @RequestBody Carrot carrot){
+      carrotRepositoryImpl.updateCarrot(id, carrot.getType(), carrot.getIdFrom(), carrot.getIdTo(), carrot.getCarrotAmt());
+    }
+
+/*    @PostMapping
+    public void createNewCarrot(@RequestBody Carrot carrot){carrotRepositoryImpl.create(carrot);}*/
 }
