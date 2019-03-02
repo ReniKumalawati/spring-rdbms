@@ -2,6 +2,7 @@ package com.mitrais.gundalatem.springrdbms.controller;
 
 import com.mitrais.gundalatem.springrdbms.model.Carrot;
 import com.mitrais.gundalatem.springrdbms.service.CarrotServiceUsingDb;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +25,15 @@ public class CarrotJPQLController {
         }
         List<Carrot>  cr = carrotServiceUsingDb.fetchCarrotJPQL();
         return cr;
+    }
+
+    @PutMapping("{id}")
+    void update(@RequestBody Carrot carrot, @PathVariable int id) {
+        carrotServiceUsingDb.updateCarrotJPQL(id, carrot.getType(), carrot.getIdFrom(), carrot.getIdTo(), carrot.getCarrotAmt());
+    }
+
+    @DeleteMapping("{id}")
+    List<Carrot> delete(@PathVariable int id) {
+        return carrotServiceUsingDb.deleteCarrotJPQL(id);
     }
 }

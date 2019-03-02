@@ -4,11 +4,21 @@ import com.mitrais.gundalatem.springrdbms.model.Carrot;
 import com.mitrais.gundalatem.springrdbms.repository.CarrotRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
+import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
 public class CarrotServiceUsingDb implements CarrotService {
     private CarrotRepository carrotRepository;
+
+    @PersistenceContext
+    private EntityManager em;
 
     public CarrotServiceUsingDb(CarrotRepository carrotRepository) {
         this.carrotRepository = carrotRepository;
@@ -39,12 +49,28 @@ public class CarrotServiceUsingDb implements CarrotService {
     }
 
 //    @Override
-//    public List<Carrot> createCarrotJPQL(Carrot carrot) {
-//        return carrotRepository.createCarrotJPQL(carrot);
+//    public void createCarrotJPQL(int id, String type, int idFrom, int idTo, int carrotAmt) {
+//        carrotRepository.createCarrotJPQL(id, type, idFrom, idTo, carrotAmt);
 //    }
 //
     @Override
     public List<Carrot> fetchCarrotJPQL() {
+        return carrotRepository.fetchCarrotJPQL();
+    }
+
+    @Override
+    public void updateCarrotJPQL(int id, String type, int idFrom, int idTo, int carrotAmt) {
+        carrotRepository.updateCarrotJPQL(id, type, idFrom, idTo, carrotAmt);
+    }
+
+    @Transactional
+    @Override
+    public List<Carrot> deleteCarrotJPQL(int id) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaDelete<Carrot> delete = cb.createCriteriaDelete(Carrot.class);
+        Root<Carrot> carrot = delete.from(Carrot.class);
+        delete.where(cb.equal(carrot.get("id"), id));
+        em.createQuery(delete).executeUpdate();
         return carrotRepository.fetchCarrotJPQL();
     }
 //
