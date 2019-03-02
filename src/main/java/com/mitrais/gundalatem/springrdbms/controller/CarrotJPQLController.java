@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/carrots")
-public class CarrotController {
+@RequestMapping("api/carrotsJPQL")
+public class CarrotJPQLController {
 
     private CarrotServiceUsingDb carrotServiceUsingDb;
 
-    public CarrotController(CarrotServiceUsingDb carrotServiceUsingDb) {
+    public CarrotJPQLController(CarrotServiceUsingDb carrotServiceUsingDb) {
         this.carrotServiceUsingDb = carrotServiceUsingDb;
     }
 
@@ -22,17 +22,7 @@ public class CarrotController {
             List<Carrot>  cr = carrotServiceUsingDb.findAllByType(type);
             return cr;
         }
-        List<Carrot>  cr = carrotServiceUsingDb.fetch();
+        List<Carrot>  cr = carrotServiceUsingDb.fetchCarrotJPQL();
         return cr;
-    }
-
-    @PostMapping
-    public  void createCarrot (@RequestBody  Carrot carrot) {
-        carrotServiceUsingDb.create(carrot);
-    }
-
-    @DeleteMapping("{id}")
-    public List<Carrot> deleteCarrot (@PathVariable int id) {
-        return carrotServiceUsingDb.delete(id);
     }
 }
