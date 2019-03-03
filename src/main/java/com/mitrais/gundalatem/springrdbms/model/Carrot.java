@@ -1,7 +1,6 @@
 package com.mitrais.gundalatem.springrdbms.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.transaction.Transactional;
 
 @Entity
@@ -13,6 +12,10 @@ public class Carrot {
     private int idFrom;
     private int idTo;
     private int carrotAmt;
+
+    @ManyToOne (fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "transactionId", nullable = false)
+    private Basket basket;
 
     public Carrot() {}
 

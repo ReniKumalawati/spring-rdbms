@@ -37,4 +37,9 @@ public class CarrotControllerImpl {
     public void updateCarrot(@PathVariable Integer id, @RequestBody Carrot carrot){
       carrotRepositoryImpl.updateCarrot(id, carrot.getType(), carrot.getIdFrom(), carrot.getIdTo(), carrot.getCarrotAmt());
     }
+
+    @PostMapping
+    void create(@RequestBody Carrot carrot) {
+        carrotRepositoryImpl.createCarrot(carrot.getId(), carrot.getType(), carrot.getIdFrom(), carrot.getIdTo(), carrot.getCarrotAmt());
+    }
 }

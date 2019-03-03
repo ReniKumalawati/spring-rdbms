@@ -47,21 +47,21 @@ public class CarrotRepositoryImpl implements CarrotService {
         return query.getResultList();
     }
 
-   /* @Override
-    public void create(Carrot carrot){
+    @Override
+    public void createCarrot(int id, String type, int idFrom, int idTo, int carrotAmt){
         em.getTransaction().begin();
 
         Carrot crrt = new Carrot();
-        crrt.setCarrotAmt(20);
-        crrt.setId(109);
-        crrt.setIdFrom(201);
-        crrt.setIdTo(302);
-        carrot.setType("freezing");
+        crrt.setCarrotAmt(carrotAmt);
+        crrt.setId(id);
+        crrt.setIdFrom(idFrom);
+        crrt.setIdTo(idTo);
+        crrt.setType(type);
 
-        em.persist(carrot);
+        em.persist(crrt);
 
         em.getTransaction().commit();
-    }*/
+    }
 
    @Transactional
     public void deleteCarrot(int id) {

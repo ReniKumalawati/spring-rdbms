@@ -14,6 +14,8 @@ public interface CarrotService {
 
     void deleteCarrot(int id);
     void updateCarrot(int id, String type, int idFrom, int idTo, int carrotAmt );
+    void createCarrot(int id, String type, int idFrom, int idTo, int carrotAmt);
+
     List<Carrot> create(Carrot carrot);
     List<Carrot> fetch();
     List<Carrot> delete(int id);

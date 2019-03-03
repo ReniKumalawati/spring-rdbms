@@ -46,6 +46,11 @@ public class CarrotServiceUsingDb implements CarrotService {
     }
 
     @Override
+    public void createCarrot(int id, String type, int idFrom, int idTo, int carrotAmt) {
+
+    }
+
+    @Override
     public List<Carrot> create(Carrot carrot) {
         carrotRepository.save(carrot);
         return fetch();
