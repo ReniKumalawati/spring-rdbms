@@ -21,5 +21,6 @@ public interface CarrotService {
     List<Carrot> findAllByTypeJPQL(String type);
     List<Carrot> fetchCarrotJPQL();
     void updateCarrotJPQL(int id, String type, int idFrom, int idTo, int carrotAmt);
+    void createCarrotJPQL(int id, String type, int idFrom, int idTo, int carrotAmt);
     List<Carrot> deleteCarrotJPQL(int id);
 }

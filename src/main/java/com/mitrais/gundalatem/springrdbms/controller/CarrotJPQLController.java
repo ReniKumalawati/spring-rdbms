@@ -32,6 +32,11 @@ public class CarrotJPQLController {
         carrotServiceUsingDb.updateCarrotJPQL(id, carrot.getType(), carrot.getIdFrom(), carrot.getIdTo(), carrot.getCarrotAmt());
     }
 
+    @PostMapping
+    void create(@RequestBody Carrot carrot) {
+        carrotServiceUsingDb.createCarrotJPQL(carrot.getId(), carrot.getType(), carrot.getIdFrom(), carrot.getIdTo(), carrot.getCarrotAmt());
+    }
+
     @DeleteMapping("{id}")
     List<Carrot> delete(@PathVariable int id) {
         return carrotServiceUsingDb.deleteCarrotJPQL(id);

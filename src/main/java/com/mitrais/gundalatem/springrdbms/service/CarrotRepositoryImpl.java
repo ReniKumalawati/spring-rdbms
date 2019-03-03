@@ -98,4 +98,49 @@ public class CarrotRepositoryImpl implements CarrotService {
         // perform update
         em.createQuery(update).executeUpdate();
     }
+
+    @Override
+    public List<Carrot> create(Carrot carrot) {
+        return null;
+    }
+
+    @Override
+    public List<Carrot> fetch() {
+        return null;
+    }
+
+    @Override
+    public List<Carrot> delete(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Carrot> findAllByType(String type) {
+        return null;
+    }
+
+    @Override
+    public List<Carrot> findAllByTypeJPQL(String type) {
+        return null;
+    }
+
+    @Override
+    public List<Carrot> fetchCarrotJPQL() {
+        return null;
+    }
+
+    @Override
+    public void updateCarrotJPQL(int id, String type, int idFrom, int idTo, int carrotAmt) {
+
+    }
+
+    @Override
+    public void createCarrotJPQL(int id, String type, int idFrom, int idTo, int carrotAmt) {
+
+    }
+
+    @Override
+    public List<Carrot> deleteCarrotJPQL(int id) {
+        return null;
+    }
 }

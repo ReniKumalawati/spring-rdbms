@@ -90,20 +90,17 @@ public class CarrotServiceUsingDb implements CarrotService {
         carrotRepository.updateCarrotJPQL(id, type, idFrom, idTo, carrotAmt);
     }
 
+    @Override
+    public void createCarrotJPQL(int id, String type, int idFrom, int idTo, int carrotAmt) {
+        System.out.println(id + type + idTo);
+        carrotRepository.createCarrotJPQL(id, type, idFrom, idTo, carrotAmt);
+    }
+
     @Transactional
     @Override
     public List<Carrot> deleteCarrotJPQL(int id) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaDelete<Carrot> delete = cb.createCriteriaDelete(Carrot.class);
-        Root<Carrot> carrot = delete.from(Carrot.class);
-        delete.where(cb.equal(carrot.get("id"), id));
-        em.createQuery(delete).executeUpdate();
+        carrotRepository.deleteCarrotJPQL(id);
         return carrotRepository.fetchCarrotJPQL();
     }
-//
-//    @Override
-//    public List<Carrot> deleteCarrotJPQL(int id) {
-//        return carrotRepository.deleteCarrotJPQL(id);
-//    }
 
 }
