@@ -1,5 +1,8 @@
 package com.mitrais.gundalatem.springrdbms.model;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.HashSet;
@@ -30,6 +33,12 @@ public class Employee {
             joinColumns = {@JoinColumn(name = "employee_id")},
             inverseJoinColumns = {@JoinColumn(name = "trans_id")})
     private Set<Carrot> carrots = new HashSet<>();
+
+
+    @ManyToOne
+    @JoinColumn (name = "freezer_id",unique = true)
+    @NotFound(action= NotFoundAction.IGNORE)
+    private Freezer freezer;
 
     public Employee(){
     }

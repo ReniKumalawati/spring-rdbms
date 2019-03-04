@@ -13,6 +13,8 @@ public class Basket {
 
     @Id
     private int id;
+    private String name;
+    private String type;
 
     @OneToOne(mappedBy = "basket")
     private Employee employee;
