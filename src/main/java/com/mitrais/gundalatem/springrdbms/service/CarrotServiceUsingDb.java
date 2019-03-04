@@ -6,11 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,6 +63,11 @@ public class CarrotServiceUsingDb implements CarrotService {
     public List<Carrot> findAllByType(String type) {
         System.out.println(type);
         return carrotRepository.findAll().stream().filter((e) -> e.getType().equals(type)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Carrot> findAllById(int id) {
+        return carrotRepository.findAll().stream().filter((e) -> e.getId() == id).collect(Collectors.toList());
     }
 
     @Override
