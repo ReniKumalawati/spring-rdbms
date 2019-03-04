@@ -2,6 +2,8 @@ package com.mitrais.gundalatem.springrdbms.model;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Transactional
@@ -18,6 +20,16 @@ public class Employee {
     @OneToOne(cascade = { CascadeType.ALL })
     @JoinColumn (name = "basketId", referencedColumnName = "id")
     private Basket basket;
+
+    @ManyToMany (fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name="employee_transactions",
+            joinColumns = {@JoinColumn(name = "employee_id")},
+            inverseJoinColumns = {@JoinColumn(name = "trans_id")})
+    private Set<Carrot> carrots = new HashSet<>();
 
     public Employee(){
     }

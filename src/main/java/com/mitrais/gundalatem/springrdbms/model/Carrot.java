@@ -2,6 +2,8 @@ package com.mitrais.gundalatem.springrdbms.model;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Transactional
@@ -14,8 +16,16 @@ public class Carrot {
     private int carrotAmt;
 
     @ManyToOne (fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "transactionId", nullable = false)
+    @JoinColumn(name = "basket_id", nullable = false)
     private Basket basket;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "carrots")
+    private Set<Employee> employees = new HashSet<>();
 
     public Carrot() {}
 
