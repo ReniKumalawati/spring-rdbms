@@ -1,7 +1,6 @@
 package com.mitrais.gundalatem.springrdbms.controller;
 
 import com.mitrais.gundalatem.springrdbms.model.Carrot;
-import com.mitrais.gundalatem.springrdbms.service.CarrotRepositoryImpl;
 import com.mitrais.gundalatem.springrdbms.service.CarrotServiceUsingDb;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +17,9 @@ public class CarrotController {
     }
 
     @GetMapping
-    public List<Carrot> get(@RequestParam(required = false) String type) {
-        if (type != null) {
-            List<Carrot>  cr = carrotServiceUsingDb.findAllByType(type);
+    public List<Carrot> get(@RequestParam(required = false) Integer id) {
+        if (id != null) {
+            List<Carrot>  cr = carrotServiceUsingDb.findAllById(id);
             return cr;
         }
         List<Carrot>  cr = carrotServiceUsingDb.fetch();

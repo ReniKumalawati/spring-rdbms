@@ -1,7 +1,6 @@
 package com.mitrais.gundalatem.springrdbms.service;
 
 import com.mitrais.gundalatem.springrdbms.model.Carrot;
-import com.mitrais.gundalatem.springrdbms.repository.CarrotRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -116,6 +115,11 @@ public class CarrotRepositoryImpl implements CarrotService {
 
     @Override
     public List<Carrot> findAllByType(String type) {
+        return null;
+    }
+
+    @Override
+    public List<Carrot> findAllById(int id) {
         return null;
     }
 
