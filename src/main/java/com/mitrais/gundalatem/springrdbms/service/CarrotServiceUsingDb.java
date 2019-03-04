@@ -64,6 +64,12 @@ public class CarrotServiceUsingDb implements CarrotService {
     }
 
     @Override
+    public List<Carrot> update(Integer id, Carrot carrot) {
+//        return
+              <  carrotRepository.findAllById(id);
+    }
+
+    @Override
     public List<Carrot> findAllByType(String type) {
         System.out.println(type);
         return carrotRepository.findAll().stream().filter((e) -> e.getType().equals(type)).collect(Collectors.toList());

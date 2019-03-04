@@ -19,6 +19,7 @@ public interface CarrotRepository extends JpaRepository<Carrot, Integer> {
     @Query("select c from Carrot c")
     List<Carrot> fetchCarrotJPQL();
 
+
     @Modifying
     @Query(value = "insert into Carrot (id,type,id_from,id_to,carrot_amt) values (:id,:type ,:idFrom,:idTo,:carrotAmt)", nativeQuery = true)
     @Transactional

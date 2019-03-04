@@ -32,8 +32,12 @@ public class CarrotController {
         carrotServiceUsingDb.create(carrot);
     }
 
-/*    @PostMapping
-    public void createNewCarrot(@RequestBody Carrot carrot){carrotRepositoryImpl.create(carrot);}*/
+    @PutMapping("{id}")
+    public List<Carrot> updateCarrot(@RequestBody Carrot carrot, @PathVariable int id) {
+        return carrotServiceUsingDb.updateCarrot(id);
+    }
+
+    @DeleteMapping("{id}")
     public List<Carrot> deleteCarrot (@PathVariable int id) {
         return carrotServiceUsingDb.delete(id);
     }
