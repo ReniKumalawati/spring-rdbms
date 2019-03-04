@@ -17,7 +17,7 @@ public interface CarrotService {
     List<Carrot> create(Carrot carrot);
     List<Carrot> fetch();
     List<Carrot> delete(int id);
-    List<Carrot> update(int id);
+    List<Carrot> update(int id, Carrot carrot);
     List<Carrot> findAllByType(String type);
     List<Carrot> findAllById(int id);
     List<Carrot> findAllByTypeJPQL(String type);

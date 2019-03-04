@@ -60,9 +60,20 @@ public class CarrotServiceUsingDb implements CarrotService {
     }
 
     @Override
-    public List<Carrot> update(Integer id, Carrot carrot) {
+    public List<Carrot> update(int id, Carrot carrot) {
 //        return
-              <  carrotRepository.findAllById(id);
+              List<Carrot> myList = findAllById(id);
+              myList.forEach((Carrot crt) -> {
+
+                  crt.setId(id);
+                  crt.setType(carrot.getType());
+                  crt.setIdTo(carrot.getIdTo());
+                  crt.setIdFrom(carrot.getIdFrom());
+                  crt.setCarrotAmt(carrot.getCarrotAmt());
+                  create(crt);
+              });
+
+              return fetch();
     }
 
     @Override

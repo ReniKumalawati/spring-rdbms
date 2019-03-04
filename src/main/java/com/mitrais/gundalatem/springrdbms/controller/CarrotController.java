@@ -32,8 +32,8 @@ public class CarrotController {
     }
 
     @PutMapping("{id}")
-    public List<Carrot> updateCarrot(@RequestBody Carrot carrot, @PathVariable int id) {
-        return carrotServiceUsingDb.updateCarrot(id);
+    public List<Carrot> updateCarrot(@PathVariable int id, @RequestBody Carrot carrot ) {
+        return carrotServiceUsingDb.update(id, carrot);
     }
 
     @DeleteMapping("{id}")

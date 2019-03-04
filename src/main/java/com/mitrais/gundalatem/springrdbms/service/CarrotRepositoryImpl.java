@@ -114,6 +114,11 @@ public class CarrotRepositoryImpl implements CarrotService {
     }
 
     @Override
+    public List<Carrot> update(int id, Carrot carrot) {
+        return null;
+    }
+
+    @Override
     public List<Carrot> findAllByType(String type) {
         return null;
     }
